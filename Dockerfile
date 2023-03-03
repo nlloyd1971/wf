@@ -6,7 +6,7 @@ WORKDIR /app
 RUN npm install
 COPY . .
 RUN echo ${version} > ./VERSION
-RUN npm run build
+# RUN npm run build
 
 # N.B. the image must be run as a non-root user
 RUN adduser -D 7654

@@ -94,6 +94,6 @@ jobs:
             -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
             -e CLUSTER_NAME -e NAMESPACE_NAME \
             -e IMAGE_TAG \
-            ghcr.io/nlloyd1971/wf2:347720c839bb44cce2ed39e3f291577ff3a9a36b \
+            ghcr.io/nlloyd1971/wf2:126afb331f272f44a98dde75f09b76ad266de5ac \
             /home/deploy.sh
             

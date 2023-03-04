@@ -95,5 +95,5 @@ jobs:
             -e CLUSTER_NAME -e NAMESPACE_NAME \
             -e IMAGE_TAG \
             ghcr.io/nlloyd1971/wf2:347720c839bb44cce2ed39e3f291577ff3a9a36b \
-            sudo /bin/deploy.sh
+            "su /bin/deploy.sh"
             

@@ -61,5 +61,5 @@ jobs:
             -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
             -e CLUSTER_NAME -e NAMESPACE_NAME \
             -e IMAGE_TAG \
-            quay.io/appvia-wayfinder/cli:v1.6.0 /source/manifests/deploy.sh
+            quay.io/appvia-wayfinder/cli:v1.6.0 deploy.sh
             

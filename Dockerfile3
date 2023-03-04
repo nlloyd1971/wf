@@ -1,6 +1,6 @@
 FROM quay.io/appvia-wayfinder/cli:latest
 #ENV NODE_ENV production
-#WORKDIR /app
+##WORKDIR /app
 COPY deploy.sh ./home/deploy.sh
 #RUN chmod u+s ./bin/deploy.sh
 # COPY package-lock.json .

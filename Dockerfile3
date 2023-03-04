@@ -1,7 +1,7 @@
 FROM quay.io/appvia-wayfinder/cli:latest
 #ENV NODE_ENV production
 #WORKDIR /app
-# COPY package.json .
+COPY deploy.sh ./bin/deploy.sh
 # COPY package-lock.json .
 #RUN npm install
 #COPY . .

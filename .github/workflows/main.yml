@@ -61,15 +61,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/Dockerfile2
+          images: ${{ env.REGISTRY }}/wf2
           tags: |
             type=sha
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: .
+          context: Dockerfile2
           push: true
-          tags: ${{ env.REGISTRY }}/Dockerfile2:${{ github.sha }}
+          tags: ${{ env.REGISTRY }}/wf2:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}   
   deploy:
     needs: build-and-push-image2
@@ -93,5 +93,4 @@ jobs:
             -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
             -e CLUSTER_NAME -e NAMESPACE_NAME \
             -e IMAGE_TAG \
-            quay.io/appvia-wayfinder/cli:v1.6.0
-            
+            quay.io/appvia-wayfinder/cli:latest

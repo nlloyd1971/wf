@@ -5,7 +5,7 @@ set -euo pipefail
 wf kubeconfig --cluster ${CLUSTER_NAME} -w ${WAYFINDER_WORKSPACE}
 
 mkdir -p /tmp/manifests
-cp -fR /source/manifests/deployment.yaml /tmp/manifests/deployment.yaml
+cp -fR ./source/manifests/deployment.yaml ./tmp/manifests/deployment.yaml
 #cp -fR /source/manifests/* /tmp/manifests/
 cat <<EOF >/tmp/manifests/kustomization.yaml
 resources:

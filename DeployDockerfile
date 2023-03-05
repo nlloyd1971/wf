@@ -1,0 +1,6 @@
+FROM quay.io/appvia-wayfinder/cli:latest
+COPY deploy.sh ./home/deploy.sh
+USER root
+RUN chmod 755 /home/deploy.sh
+RUN mkdir -p /source/manifests
+COPY deployment.yaml /source/manifests/deployment.yaml

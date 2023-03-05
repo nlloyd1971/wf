@@ -3,5 +3,5 @@ COPY deploy.sh ./home/deploy.sh
 USER root
 RUN chmod 755 /home/deploy.sh
 RUN mkdir -p /source/manifests
-RUN mkdir -p /tmp/manifests
 COPY deployment.yaml /source/manifests/deployment.yaml
+RUN chmod 755 /source/manifests/deployment.yaml

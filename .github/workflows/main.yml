@@ -94,7 +94,7 @@ jobs:
           docker run -v ${{ github.workspace }}:/source \
             -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
             -e CLUSTER_NAME -e NAMESPACE_NAME \
-            -e IMAGE_TAG \
+            -e DNS_ZONE -e IMAGE_TAG \
             ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
             /home/deploy.sh
             

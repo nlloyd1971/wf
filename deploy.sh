@@ -33,3 +33,5 @@ kubectl get pods -n ${NAMESPACE_NAME}
 
 #echo "Applying manifests"
 #kubectl -n ${NAMESPACE_NAME} apply --v=6 -k /tmp/manifests
+
+kubectl -n ${NAMESPACE_NAME} apply --v=6 -f /source/manifests/deployment.yaml

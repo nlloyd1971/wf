@@ -4,7 +4,6 @@ metadata:
   labels:
     app: hello-nginx5
   name: hello-nginx5
-  namespace: default
 spec:
   progressDeadlineSeconds: 600
   replicas: 1

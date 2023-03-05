@@ -41,7 +41,6 @@ metadata:
   labels:
     app: hello-nginx5
   name: hello-nginx-lb5
-  namespace: default
 spec:
   allocateLoadBalancerNodePorts: true
   externalTrafficPolicy: Cluster

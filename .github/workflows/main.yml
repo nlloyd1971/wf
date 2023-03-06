@@ -72,7 +72,32 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/nlloyd1971/wf2:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}   
-  deploy-app-image-using-deployment-image:
+  deploy-app-image-using-deployment-image-to-dev:
+    needs: build-and-push-deployment-image
+    runs-on: ubuntu-latest
+    env:
+      WAYFINDER_SERVER: ${{ secrets.WAYFINDER_SERVER }}
+      WAYFINDER_TOKEN: ${{ secrets.WAYFINDER_TOKEN }}
+      WAYFINDER_WORKSPACE: ${{ secrets.WAYFINDER_WORKSPACE }}
+      CLUSTER_NAME: aks
+      NAMESPACE_NAME: first-namespace
+      DNS_ZONE: nlwayfinder.azure.com
+      IMAGE_TAG: ${{ github.sha }}
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Deploy
+        run: |
+          docker run -v ${{ github.workspace }}:/source \
+            -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
+            -e CLUSTER_NAME -e NAMESPACE_NAME \
+            -e DNS_ZONE -e IMAGE_TAG \
+            ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
+            /home/deploy.sh
+  deploy-app-image-using-deployment-image-to-test:
     needs: build-and-push-deployment-image
     runs-on: ubuntu-latest
     env:

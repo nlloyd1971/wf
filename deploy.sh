@@ -10,19 +10,10 @@ mkdir -p /tmp/manifests
 cat <<EOF >/home/kustomization.yaml
 resources:
 - deployment.yaml
-spec:
-  containers:
-  - image: ghcr.io/nlloyd1971/wf:${IMAGE_TAG}
-    imagePullPolicy: Always
-    name: demo
-    resources: {}
-    terminationMessagePath: /dev/termination-log
-    terminationMessagePolicy: File
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-  schedulerName: default-scheduler
-  securityContext: {}
-  terminationGracePeriodSeconds: 30
+images:
+- name: ghcr.io/nlloyd1971/demo:latest
+  newName: ghcr.io/nlloyd1971/wf
+  newTag: ${IMAGE_TAG}
 EOF
 
 echo "Getting pods"

@@ -97,8 +97,23 @@ jobs:
             -e DNS_ZONE -e IMAGE_TAG \
             ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
             /home/deploy.sh
+  
+  approve-before-deploy-to-test:
+    runs-on: ubuntu-latest  
+    steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: nlloyd1971
+          minimum-approvals: 1
+          issue-title: "Deploying vxxxx to prod from staging"
+          issue-body: "Please approve or deny the deployment of version v1.3.5."
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ''
+          additional-denied-words: ''  
+
   deploy-app-image-using-deployment-image-to-test:
-    needs: build-and-push-deployment-image
+    needs: approve-before-deploy-to-test
     runs-on: ubuntu-latest
     env:
       WAYFINDER_SERVER: ${{ secrets.WAYFINDER_SERVER }}

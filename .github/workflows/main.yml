@@ -80,7 +80,7 @@ jobs:
       WAYFINDER_TOKEN: ${{ secrets.WAYFINDER_TOKEN }}
       WAYFINDER_WORKSPACE: ${{ secrets.WAYFINDER_WORKSPACE }}
       CLUSTER_NAME: aks
-      NAMESPACE_NAME: prod-namespace
+      NAMESPACE_NAME: first-namespace
       DNS_ZONE: nlwayfinder.azure.com
       IMAGE_TAG: ${{ github.sha }}
     permissions:

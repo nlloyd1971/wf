@@ -97,3 +97,31 @@ jobs:
             -e DNS_ZONE -e IMAGE_TAG \
             ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
             /home/deploy.sh
+  deployProd:
+    needs: build-and-push-image2
+    runs-on: ubuntu-latest
+    environment: 
+      name: Prod
+      url: http://20.90.123.108/
+    env:
+      WAYFINDER_SERVER: ${{ secrets.WAYFINDER_SERVER }}
+      WAYFINDER_TOKEN: ${{ secrets.WAYFINDER_TOKEN }}
+      WAYFINDER_WORKSPACE: ${{ secrets.WAYFINDER_WORKSPACE }}
+      CLUSTER_NAME: aks
+      NAMESPACE_NAME: first-namespace
+      DNS_ZONE: nlwayfinder.azure.com
+      IMAGE_TAG: ${{ github.sha }}
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Deploy
+        run: |
+          docker run -v ${{ github.workspace }}:/source \
+            -e WAYFINDER_SERVER -e WAYFINDER_TOKEN -e WAYFINDER_WORKSPACE \
+            -e CLUSTER_NAME -e NAMESPACE_NAME \
+            -e DNS_ZONE -e IMAGE_TAG \
+            ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
+            /home/deploy.sh            

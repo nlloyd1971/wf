@@ -72,7 +72,7 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/nlloyd1971/wf2:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}   
-  deploy:
+  deploy-dev:
     needs: build-and-push-image2
     runs-on: ubuntu-latest
     env:
@@ -97,7 +97,7 @@ jobs:
             -e DNS_ZONE -e IMAGE_TAG \
             ghcr.io/nlloyd1971/wf2:${{ github.sha }} \
             /home/deploy.sh
-  deploy2:
+  deploy-prod:
     needs: build-and-push-image2
     runs-on: ubuntu-latest
     env:

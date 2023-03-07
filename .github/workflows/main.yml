@@ -77,10 +77,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WAYFINDER_SERVER: ${{ secrets.WAYFINDER_SERVER }}
-      WAYFINDER_TOKEN: ${{ secrets.WAYFINDER_TOKEN }}
+      WAYFINDER_TOKEN: ${{ secrets.WAYFINDER_TOKEN2 }}
       WAYFINDER_WORKSPACE: ${{ secrets.WAYFINDER_WORKSPACE }}
       CLUSTER_NAME: aks
-      NAMESPACE_NAME: first-namespace
+      NAMESPACE_NAME: prod-namespace
       DNS_ZONE: nlwayfinder.azure.com
       IMAGE_TAG: ${{ github.sha }}
     permissions:
